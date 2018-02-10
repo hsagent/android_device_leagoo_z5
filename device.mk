@@ -2,10 +2,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
-# $(call inherit-product, device/leagoo/z5/vendor/copyfiles.mk)
-$(call inherit-product, vendor/leagoo/z5/z5-vendor-blobs.mk)
+$(call inherit-product, device/bluboo/magc6580_we_m/vendor/copyfiles.mk)
+$(call inherit-product, vendor/bluboo/magc6580_we_m/magc6580_we_m-vendor-blobs.mk)
 
-LOCAL_PATH := device/leagoo/z5
+LOCAL_PATH := device/bluboo/magc6580_we_m
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -14,7 +14,7 @@ PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Recovery allowed devices
-# TARGET_OTA_ASSERT_DEVICE := d5110,d5110_leagoo,leagoo_z5,leagoo_z5_sprout,leagoo D5110,z5,hot2
+TARGET_OTA_ASSERT_DEVICE := bluboo_magc6580_we_m,magc6580_we_m
 
 PRODUCT_PACKAGES += \
    libxlog
@@ -167,11 +167,7 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml 
-
-# MiraVision
-PRODUCT_PACKAGES += \
-	MiraVision
+    $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.adb.secure=0 \
@@ -182,7 +178,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1 \
     ro.mount.fs=EXT4 \
     persist.service.acm.enable=0 \
-    persist.sys.usb.config=mtp,adb
+    persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
@@ -190,7 +186,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.call_recording.enabled=true \
     persist.call_recording.src=1 \
     persist.debug.wfd.enable=1
-    persist.sys.usb.config=mtp,adb
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -199,6 +194,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libnl_2 \
     libtinyxml
+    
+# Browser
+PRODUCT_PACKAGES += \
+    Gello
 
 # FM Radio
 PRODUCT_PACKAGES += \
